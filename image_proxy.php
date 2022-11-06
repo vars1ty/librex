@@ -20,4 +20,3 @@ if (in_array($base_url_main, $allowed_domains)) {
     header("Content-Type: image/jpeg");
     echo $image_src;
 }
-?>
