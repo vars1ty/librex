@@ -72,8 +72,8 @@ a:hover,
 }
 
 .search-button-wrapper button {
-
-    margin: 30px 60px 0px 60px;
+    margin: 30px 60px 0 60px;
+    border-radius: 20px;
 }
 
 .sub-search-container {

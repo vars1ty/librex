@@ -50,5 +50,4 @@ return (object)array(
         CURLOPT_TIMEOUT => 8,
         CURLOPT_VERBOSE => false
     )
-
 );
