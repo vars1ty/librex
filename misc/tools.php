@@ -41,8 +41,7 @@ function check_for_privacy_frontend($url)
         "instagram.com" => "bibliogram",
         "twitter.com" => "nitter",
         "reddit.com" => "libreddit",
-        "tiktok.com" => "proxitok",
-        "wikipedia.org" => "wikiless"
+        "tiktok.com" => "proxitok"
     );
 
     foreach ($frontends as $original => $frontend) {

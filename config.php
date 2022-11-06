@@ -19,7 +19,6 @@ return (object)array(
     "nitter" => "", // twitter
     "libreddit" => "", // reddit
     "proxitok" => "", // tiktok
-    "wikiless" => "", // wikipedia
 
     /*
         To send requests trough a proxy uncomment CURLOPT_PROXY and CURLOPT_PROXYTYPE:

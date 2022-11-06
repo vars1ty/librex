@@ -121,15 +121,6 @@ require "misc/header.php";
                     >
                 </label>
             </div>
-
-            <div>
-                <a for="wikiless" href="https://codeberg.org/orenom/wikiless" target="_blank">Wikiless</a>
-                <label>
-                    <input type="text" name="wikiless" placeholder="Replace Wikipedia" value=
-                    <?php echo isset($_COOKIE["wikiless"]) ? htmlspecialchars($_COOKIE["wikiless"]) : "\"$config->wikiless\""; ?>
-                    >
-                </label>
-            </div>
         </div>
         <div>
             <label>Disable frontends</label>
