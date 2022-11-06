@@ -6,9 +6,6 @@
     <a href="./api.php" target="_blank">API</a>
     <a href="./donate.php">Donate ❤️</a>
 </div>
-<div class="git-container">
-    <?php
-    $hash = file_get_contents(".git/refs/heads/main");
-    echo "<a href=\"https://github.com/vars1ty/librex/commit/$hash\" target=\"_blank\">Latest commit: $hash</a>";
-    ?>
+<div class="bottom-container">
+    <small>session for contact: <code>05f1c94c6536a01a1533768d38dc746dce1583307db90a0a943080fefbe6292d07</code></small>
 </div>

@@ -270,11 +270,17 @@ a:hover,
     margin: 10px;
 }
 
-.git-container {
+small,
+.bottom-container {
     right: 0;
 }
 
-.git-container,
+small:hover {
+    text-decoration-line: underline;
+}
+
+small,
+.bottom-container,
 .footer-container {
     position: fixed;
     bottom: 0;
@@ -290,11 +296,13 @@ a:hover,
     text-align: center;
 }
 
-.git-container a {
+small,
+.bottom-container a {
     font-size: 10px;
 }
 
-.git-container a,
+small,
+.bottom-container a,
 .footer-container a {
     color: var(--footer-fg);
 }
@@ -361,7 +369,8 @@ a:hover,
         border: none;
     }
 
-    .git-container {
+    small,
+    .bottom-container {
         display: none;
     }
 
