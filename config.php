@@ -46,6 +46,7 @@ return (object)array(
         CURLOPT_PROTOCOLS => CURLPROTO_HTTPS | CURLPROTO_HTTP,
         CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS | CURLPROTO_HTTP,
         CURLOPT_MAXREDIRS => 5,
+        // Lower timeout than the standard 18.
         CURLOPT_TIMEOUT => 8,
         CURLOPT_VERBOSE => false
     )
