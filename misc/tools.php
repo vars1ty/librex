@@ -142,3 +142,11 @@ function print_next_page_button($text, $page, $query, $type): void
     echo "<button type=\"submit\">$text</button>";
     echo "</form>";
 }
+
+/** Destroys (unset) ALL user-defined setting cookies */
+function destroy_settings_cookies(): void
+{
+    foreach ($_COOKIE as $k => $v) {
+        setcookie($k, null, 0);
+    }
+}

@@ -1,23 +1,20 @@
 <?php
 $config = require "config.php";
+require "./misc/tools.php";
 
-if (isset($_REQUEST["save"]) || isset($_REQUEST["reset"])) {
+if (isset($_REQUEST["reset"])) {
     if (isset($_SERVER["HTTP_COOKIE"])) {
-        $cookies = explode(";", $_SERVER["HTTP_COOKIE"]);
-        foreach ($cookies as $cookie) {
-            $parts = explode("=", $cookie);
-            $name = trim($parts[0]);
-            setcookie($name, "", time() - 1000);
-        }
+        destroy_settings_cookies();
     }
-
 }
 
 if (isset($_REQUEST["save"])) {
+    destroy_settings_cookies();
     foreach ($_POST as $key => $value) {
         if (!empty($value)) {
             setcookie($key, $value, time() + (86400 * 90), '/');
-            $_COOKIE[$name] = $value;
+        } else {
+            setcookie($key, null, 0);
         }
     }
 }
@@ -114,7 +111,6 @@ require "misc/header.php";
                     >
                 </label>
             </div>
-
             <div>
                 <a for="proxitok" href="https://github.com/pablouser1/ProxiTok/wiki/Public-instances" target="_blank">ProxiTok</a>
                 <label>
