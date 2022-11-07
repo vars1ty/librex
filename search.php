@@ -56,7 +56,7 @@ switch ($type) {
     case 0:
         $query_parts = explode(" ", $query);
         $last_word_query = end($query_parts);
-        if (substr($query, 0, 1) == "!" || substr($last_word_query, 0, 1) == "!")
+        if (str_starts_with($query, '!') || str_starts_with($last_word_query, '!'))
             check_ddg_bang($query);
         require "engines/google/text.php";
         $results = get_text_results($query, $page);

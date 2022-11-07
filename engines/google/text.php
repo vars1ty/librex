@@ -163,12 +163,13 @@ function print_text_results($results): void
 {
     $special = $results[0];
     if (array_key_exists("special_response", $special)) {
-        $response = $special["special_response"]["response"];
-        $source = $special["special_response"]["source"];
+        $special_response = $special["special_response"];
+        $response = $special_response["response"];
+        $source = $special_response["source"];
 
         echo "<p class=\"special-result-container\">";
-        if (array_key_exists("image", $special["special_response"])) {
-            $image_url = $special["special_response"]["image"];
+        if (array_key_exists("image", $special_response)) {
+            $image_url = $special_response["image"];
             echo "<img src=\"image_proxy.php?url=$image_url\" alt=''>";
         }
         echo $response;
