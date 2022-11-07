@@ -87,7 +87,6 @@ a:hover,
 }
 
 .sub-search-container input {
-    margin-bottom: 20px;
     width: 580px;
     position: relative;
     left: 140px;
@@ -96,7 +95,7 @@ a:hover,
 
 .logomobile {
     position: absolute;
-    margin-top: 0px;
+    margin-top: 0;
     top: 25px;
     left: 20px;
 }
@@ -195,7 +194,7 @@ a:hover,
     background: var(--special-text-background);
     color: var(--special-text-color);
     margin-left: 840px;
-    margin-top: 0px;
+    margin-top: 0;
     position: absolute;
 }
 
@@ -270,23 +269,9 @@ a:hover,
     margin: 10px;
 }
 
-small,
-.bottom-container {
-    right: 0;
-}
-
-small:hover {
-    text-decoration-line: underline;
-}
-
-small,
-.bottom-container,
 .footer-container {
     position: fixed;
     bottom: 0;
-}
-
-.footer-container {
     width: 100vw;
     left: 0;
     background-color: var(--footer-bg);
@@ -296,18 +281,8 @@ small,
     text-align: center;
 }
 
-small,
-.bottom-container a {
-    font-size: 10px;
-}
-
-small,
-.bottom-container a,
 .footer-container a {
     color: var(--footer-fg);
-}
-
-.footer-container a {
     margin-left: 15px;
     margin-right: 15px;
 }
@@ -352,7 +327,7 @@ small,
 
     .search-button-wrapper button {
         display: table-row;
-        margin: 30px 0px 0px 0px;
+        margin: 30px 0 0 0;
         width: 80%;
     }
 
@@ -367,11 +342,6 @@ small,
         padding: 0;
         width: 90%;
         border: none;
-    }
-
-    small,
-    .bottom-container {
-        display: none;
     }
 
     .footer-container a {
@@ -392,23 +362,19 @@ small,
     .logomobile {
         position: relative;
         float: none;
-        margin-top: 0px;
-        margin-bottom: 0px;
-        margin-left: auto;
-        margin-right: auto;
+        margin: 0 auto;
         padding: 10px;
         font-size: 28px;
         display: block;
-        margin-top: 0px;
-        top: 0px;
-        left: 0px;
+        top: 0;
+        left: 0;
     }
 
     .sub-search-container input {
         width: 80%;
         position: relative;
-        left: 0px;
-        margin-top: 0px;
+        left: 0;
+        margin-top: 0;
     }
 
     .sub-search-button-wrapper {

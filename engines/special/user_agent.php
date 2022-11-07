@@ -1,5 +1,5 @@
 <?php
-function user_agent_result()
+function user_agent_result(): array
 {
     return array(
         "special_response" => array(

@@ -1,5 +1,5 @@
 <?php
-function get_base_url($url)
+function get_base_url($url): string
 {
     $split_url = explode("/", $url);
     return $split_url[0] . "//" . $split_url[2] . "/";
@@ -54,14 +54,14 @@ function check_for_privacy_frontend($url)
     return $url;
 }
 
-function check_ddg_bang($query)
+function check_ddg_bang($query): void
 {
 
     $bangs_json = file_get_contents("static/misc/ddg_bang.json");
     $bangs = json_decode($bangs_json, true);
 
     $array = explode(" ", $query);
-    if (substr($query, 0, 1) == "!")
+    if (str_starts_with($query, "!"))
         $search_word = substr($array[0], 1);
     else
         $search_word = substr(end($array), 1);
@@ -87,14 +87,14 @@ function check_ddg_bang($query)
     }
 }
 
-function get_xpath($response)
+function get_xpath($response): DOMXPath
 {
     $htmlDom = new DOMDocument;
     @$htmlDom->loadHTML($response);
     return new DOMXPath($htmlDom);
 }
 
-function request($url)
+function request($url): bool|string
 {
     global $config;
 
@@ -103,7 +103,7 @@ function request($url)
     return curl_exec($ch);
 }
 
-function human_filesize($bytes, $dec = 2)
+function human_filesize($bytes, $dec = 2): string
 {
     $size = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
     $factor = floor((strlen($bytes) - 1) / 3);
@@ -111,20 +111,20 @@ function human_filesize($bytes, $dec = 2)
     return sprintf("%.{$dec}f ", $bytes / pow(1024, $factor)) . @$size[$factor];
 }
 
-function remove_special($string)
+function remove_special($string): array|string|null
 {
     $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
 
     return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 }
 
-function print_elapsed_time($start_time)
+function print_elapsed_time($start_time): void
 {
     $end_time = number_format(microtime(true) - $start_time, 2, '.', '');
     echo "<p id=\"time\">Fetched the results in $end_time seconds</p>";
 }
 
-function print_next_page_button($text, $page, $query, $type)
+function print_next_page_button($text, $page, $query, $type): void
 {
     echo "<form class=\"page\" action=\"search.php\" target=\"_top\" method=\"get\" autocomplete=\"off\">";
     foreach ($_REQUEST as $key => $value) {

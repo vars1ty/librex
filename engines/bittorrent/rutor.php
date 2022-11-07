@@ -1,7 +1,7 @@
 <?php
 $rutor_url = "http://rutor.info/search/$query";
 
-function get_rutor_results($response)
+function get_rutor_results($response): array
 {
     global $config;
     $xpath = get_xpath($response);

@@ -1,5 +1,5 @@
 <?php
-function get_video_results($query)
+function get_video_results($query): array
 {
     $url = "https://search.brave.com/videos?q=$query&source=web";
     $response = request($url);
@@ -31,7 +31,7 @@ function get_video_results($query)
     return $results;
 }
 
-function print_video_results($results)
+function print_video_results($results): void
 {
     echo "<div class=\"text-result-container\">";
 
@@ -47,7 +47,7 @@ function print_video_results($results)
         echo "<a href=\"$url\">";
         echo "$base_url";
         echo "<h2>$title</h2>";
-        echo "<img class=\"video-img\" src=\"image_proxy.php?url=$thumbnail\">";
+        echo "<img class=\"video-img\" src=\"image_proxy.php?url=$thumbnail\" alt=''>";
         echo "<br>";
         echo "<span>$date - $views</span>";
         echo "</a>";

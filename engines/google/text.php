@@ -1,5 +1,5 @@
 <?php
-function check_for_special_search($query)
+function check_for_special_search($query): int
 {
     if (isset($_COOKIE["disable_special"]) || isset($_REQUEST["disable_special"]))
         return 0;
@@ -15,15 +15,15 @@ function check_for_special_search($query)
     } else if (strpos($query_lower, "mean") && count($split_query) >= 2) // definition
     {
         return 2;
-    } else if (strpos($query_lower, "my") !== false) {
+    } else if (str_contains($query_lower, "my")) {
         if (strpos($query_lower, "ip")) {
             return 3;
         } else if (strpos($query_lower, "user agent") || strpos($query_lower, "ua")) {
             return 4;
         }
-    } else if (strpos($query_lower, "weather") !== false) {
+    } else if (str_contains($query_lower, "weather")) {
         return 5;
-    } else if (strpos($query_lower, "tor") !== false) {
+    } else if (str_contains($query_lower, "tor")) {
         return 6;
     } else if (3 > count(explode(" ", $query))) // wikipedia
     {
@@ -33,7 +33,7 @@ function check_for_special_search($query)
     return 0;
 }
 
-function get_text_results($query, $page = 0)
+function get_text_results($query, $page = 0): array
 {
     global $config;
 
@@ -159,7 +159,7 @@ function get_text_results($query, $page = 0)
     return $results;
 }
 
-function print_text_results($results)
+function print_text_results($results): void
 {
     $special = $results[0];
     if (array_key_exists("special_response", $special)) {
@@ -169,7 +169,7 @@ function print_text_results($results)
         echo "<p class=\"special-result-container\">";
         if (array_key_exists("image", $special["special_response"])) {
             $image_url = $special["special_response"]["image"];
-            echo "<img src=\"image_proxy.php?url=$image_url\">";
+            echo "<img src=\"image_proxy.php?url=$image_url\" alt=''>";
         }
         echo $response;
         if ($source)

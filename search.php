@@ -80,7 +80,7 @@ switch ($type) {
 
     case 3:
         if ($config->disable_bittorent_search)
-            echo "<p class=\"text-result-container\">The host disabled this feature! :C</p>";
+            echo "<p class=\"text-result-container\">BitTorrent searches have been disabled.</p>";
         else {
             require "engines/bittorrent/merge.php";
             $results = get_merged_torrent_results($query_encoded);

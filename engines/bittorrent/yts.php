@@ -1,7 +1,7 @@
 <?php
 $yts_url = "https://yts.mx/api/v2/list_movies.json?query_term=$query";
 
-function get_yts_results($response)
+function get_yts_results($response): array
 {
     global $config;
     $results = array();

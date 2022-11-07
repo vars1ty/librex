@@ -2,7 +2,7 @@
 
 $thepiratebay_url = "https://apibay.org/q.php?q=$query";
 
-function get_thepiratebay_results($response)
+function get_thepiratebay_results($response): array
 {
     global $config;
     $results = array();

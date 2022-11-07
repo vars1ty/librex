@@ -1,5 +1,5 @@
 <?php
-function get_image_results($query, $page)
+function get_image_results($query, $page): array
 {
     $page = $page / 10 + 1; // qwant has a different page system
 
@@ -34,7 +34,7 @@ function get_image_results($query, $page)
     return $results;
 }
 
-function print_image_results($results)
+function print_image_results($results): void
 {
     echo "<div class=\"image-result-container\">";
 

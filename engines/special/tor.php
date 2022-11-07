@@ -1,8 +1,8 @@
 <?php
-function tor_result($response)
+function tor_result($response): array
 {
     $formatted_response = "It seems like you are not using Tor";
-    if (strpos($response, $_SERVER["REMOTE_ADDR"]) !== false) {
+    if (str_contains($response, $_SERVER["REMOTE_ADDR"])) {
         $formatted_response = "It seems like you are using Tor";
     }
 

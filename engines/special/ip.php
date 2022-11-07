@@ -1,5 +1,5 @@
 <?php
-function ip_result()
+function ip_result(): array
 {
     return array(
         "special_response" => array(

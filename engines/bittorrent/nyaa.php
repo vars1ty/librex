@@ -1,7 +1,7 @@
 <?php
 $nyaa_url = "https://nyaa.si/?q=$query";
 
-function get_nyaa_results($response)
+function get_nyaa_results($response): array
 {
     global $config;
     $xpath = get_xpath($response);

@@ -1,7 +1,7 @@
 <?php
 $torrentgalaxy_url = "https://torrentgalaxy.to/torrents.php?search=$query#results";
 
-function get_torrentgalaxy_results($response)
+function get_torrentgalaxy_results($response): array
 {
     global $config;
     $xpath = get_xpath($response);
