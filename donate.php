@@ -5,7 +5,6 @@ require "misc/header.php";
 ?>
 
 <title>LibreX - Donate</title>
-</head>
 <body>
 <div class="misc-container">
     <h1>Donate to the <a href="https://github.com/hnhx" target="_blank">LibreX Developer</a></h1>
