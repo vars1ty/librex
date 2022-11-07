@@ -1,6 +1,8 @@
 <?php
 return (object)array(
 
+    "quad9_doh" => "https://dns.quad9.net/dns-query",
+
     // e.g.: fr -> https://google.fr/
     "google_domain" => "com",
 

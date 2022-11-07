@@ -1,7 +1,6 @@
 <?php
 $config = require "config.php";
 
-
 if (isset($_REQUEST["save"]) || isset($_REQUEST["reset"])) {
     if (isset($_SERVER["HTTP_COOKIE"])) {
         $cookies = explode(";", $_SERVER["HTTP_COOKIE"]);
@@ -75,7 +74,6 @@ require "misc/header.php";
         <p>For an example if you want to view YouTube without getting spied on, click on "Invidious", find the instance
             that is most suitable for you then paste it in (correct format: https://example.com)</p>
         <div class="instances-container">
-
             <div>
                 <a for="invidious" href="https://docs.invidious.io/instances/" target="_blank">Invidious</a>
                 <label>
@@ -87,7 +85,9 @@ require "misc/header.php";
 
             <div>
                 <a for="bibliogram" href="https://git.sr.ht/~cadence/bibliogram-docs/tree/master/docs/Instances.md"
-                   target="_blank"><del>Bibliogram</del></a>
+                   target="_blank">
+                    <del>Bibliogram</del>
+                </a>
                 <label>
                     <input type="text" name="bibliogram" placeholder="Replace Instagram" value=
                     <?php echo isset($_COOKIE["bibliogram"]) ? htmlspecialchars($_COOKIE["bibliogram"]) : "\"$config->bibliogram\""; ?>
@@ -125,10 +125,16 @@ require "misc/header.php";
             </div>
         </div>
         <div>
-            <label>Disable frontends</label>
-            <label>
-                <input type="checkbox"
-                       name="disable_frontends" <?php echo isset($_COOKIE["disable_frontends"]) ? "checked" : ""; ?> >
+            <label>Disable frontends
+                <input title="Disables alternative privacy frontends" type="checkbox"
+                       name="disable_frontends" <?php echo isset($_COOKIE["disable_frontends"]) ? "checked" : ""; ?>>
+            </label>
+        </div>
+        <div>
+            <h2>Privacy Enhancements</h2>
+            <label>Use Quad9*
+                <input title="Using Quad9 introduces overhead, leading to slower search results" type="checkbox"
+                       name="use_quad9" <?php echo isset($_COOKIE["use_quad9"]) ? "checked" : ""; ?>>
             </label>
         </div>
         <div>

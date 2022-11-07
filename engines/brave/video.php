@@ -56,4 +56,3 @@ function print_video_results($results): void
 
     echo "</div>";
 }
-

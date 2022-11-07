@@ -3,7 +3,6 @@ $_1337x_url = "https://1337x.to/search/$query/1/";
 
 function get_1337x_results($response): array
 {
-    global $config;
     $xpath = get_xpath($response);
     $results = array();
 

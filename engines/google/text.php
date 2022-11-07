@@ -44,6 +44,10 @@ function get_text_results($query, $page = 0): array
 
     $url = "https://www.google.$config->google_domain/search?&q=$query_encoded&start=$page&hl=$config->google_language";
     $google_ch = curl_init($url);
+    if (isset($_COOKIE["use_quad9"])) {
+        curl_setopt($google_ch, CURLOPT_DOH_URL, $config->quad9_doh);
+    }
+
     curl_setopt_array($google_ch, $config->curl_settings);
     curl_multi_add_handle($mh, $google_ch);
 
@@ -74,6 +78,10 @@ function get_text_results($query, $page = 0): array
         }
 
         $special_ch = curl_init($url);
+        if (isset($_COOKIE["use_quad9"])) {
+            curl_setopt($special_ch, CURLOPT_DOH_URL, $config->quad9_doh);
+        }
+
         curl_setopt_array($special_ch, $config->curl_settings);
         curl_multi_add_handle($mh, $special_ch);
     }

@@ -99,6 +99,10 @@ function request($url): bool|string
     global $config;
 
     $ch = curl_init($url);
+    if (isset($_COOKIE["use_quad9"])) {
+        curl_setopt($ch, CURLOPT_DOH_URL, $config->quad9_doh);
+    }
+
     curl_setopt_array($ch, $config->curl_settings);
     return curl_exec($ch);
 }
