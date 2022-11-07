@@ -118,10 +118,10 @@ function remove_special($string): array|string|null
     return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 }
 
-function print_elapsed_time($start_time): void
+function print_elapsed_time($results, $start_time): void
 {
     $end_time = number_format(microtime(true) - $start_time, 2, '.', '');
-    echo "<p id=\"time\">Fetched the results in $end_time seconds</p>";
+    echo "<p id=\"time\">Fetched $results results in $end_time seconds</p>";
 }
 
 function print_next_page_button($text, $page, $query, $type): void
