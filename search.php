@@ -1,10 +1,8 @@
-<?php require "misc/header.php"; ?>
-
-<title>
-    <?php
-    $query = htmlspecialchars(trim($_REQUEST["q"]));
-    echo $query;
-    ?> - LibreX</title>
+<?php require "misc/header.php";
+//       vvvvvvvvvvvvvvvv Prevents code like <p>!</p> from being interpreted.
+$query = htmlspecialchars(trim($_REQUEST["q"]));
+echo "<title>" . $query . " - LinXer</title>"
+?>
 <body>
 <form class="sub-search-container" method="get" autocomplete="off">
     <h1 class="logomobile"><a class="no-decoration" href="./">Libre<span class="X">X</span></a></h1>
@@ -34,10 +32,14 @@
     echo "<button class=\"hide\" name=\"t\" value=\"$type\"/></button>";
     ?>
     <div class="sub-search-button-wrapper">
-        <button name="t" value="0"><img src="static/images/text_result.png" alt="" width="20" height="20"/>General</button>
-        <button name="t" value="1"><img src="static/images/image_result.png" alt="" width="20" height="20"/>Images</button>
-        <button name="t" value="2"><img src="static/images/video_result.png" alt="" width="20" height="20"/>Videos</button>
-        <button name="t" value="3"><img src="static/images/torrent_result.png" alt="" width="20" height="20"/>Torrents</button>
+        <button name="t" value="0"><img src="static/images/text_result.png" alt="" width="20" height="20"/>General
+        </button>
+        <button name="t" value="1"><img src="static/images/image_result.png" alt="" width="20" height="20"/>Images
+        </button>
+        <button name="t" value="2"><img src="static/images/video_result.png" alt="" width="20" height="20"/>Videos
+        </button>
+        <button name="t" value="3"><img src="static/images/torrent_result.png" alt="" width="20" height="20"/>Torrents
+        </button>
     </div>
     <hr>
 </form>

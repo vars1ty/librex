@@ -4,7 +4,7 @@ require "misc/header.php";
 // Feel free to add your donation options here, but please don't remove mine.
 ?>
 
-<title>LibreX - Donate</title>
+<title>LinXer - Donate</title>
 <body>
 <div class="misc-container">
     <h1>Donate to the <a href="https://github.com/hnhx" target="_blank">LibreX Developer</a></h1>

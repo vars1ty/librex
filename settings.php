@@ -31,7 +31,7 @@ if (isset($_REQUEST["save"]) || isset($_REQUEST["reset"])) {
 require "misc/header.php";
 ?>
 
-<title>LibreX - Settings</title>
+<title>LinXer - Settings</title>
 <body>
 <div class="misc-container">
     <h1>Settings</h1>

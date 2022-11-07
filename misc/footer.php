@@ -1,5 +1,5 @@
 <div class="footer-container">
-    <a href="./">LibreX</a>
+    <a href="./">LinXer</a>
     <a href="https://github.com/vars1ty/librex/" target="_blank">Source</a>
     <a href="https://github.com/hnhx/librex/blob/main/README.md" target="_blank">Instance list</a>
     <a href="./settings.php">Settings</a>

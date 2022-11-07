@@ -1,6 +1,6 @@
 <?php require "misc/header.php"; ?>
 
-<title>LibreX</title>
+<title>LinXer</title>
 <body>
 <form class="search-container" action="search.php" method="get" autocomplete="off">
     <h1>Libre<span class="X">X</span></h1>
