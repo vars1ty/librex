@@ -33,13 +33,11 @@
     $type = isset($_REQUEST["t"]) ? (int)$_REQUEST["t"] : 0;
     echo "<button class=\"hide\" name=\"t\" value=\"$type\"/></button>";
     ?>
-    <button type="submit" class="hide"></button>
-    <input type="hidden" name="p" value="0">
     <div class="sub-search-button-wrapper">
-        <button name="t" value="0"><img src="static/images/text_result.png" alt=""/>General</button>
-        <button name="t" value="1"><img src="static/images/image_result.png" alt=""/>Images</button>
-        <button name="t" value="2"><img src="static/images/video_result.png" alt=""/>Videos</button>
-        <button name="t" value="3"><img src="static/images/torrent_result.png" alt=""/>Torrents</button>
+        <button name="t" value="0"><img src="static/images/text_result.png" alt="" width="20" height="20"/>General</button>
+        <button name="t" value="1"><img src="static/images/image_result.png" alt="" width="20" height="20"/>Images</button>
+        <button name="t" value="2"><img src="static/images/video_result.png" alt="" width="20" height="20"/>Videos</button>
+        <button name="t" value="3"><img src="static/images/torrent_result.png" alt="" width="20" height="20"/>Torrents</button>
     </div>
     <hr>
 </form>

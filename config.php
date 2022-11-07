@@ -44,7 +44,8 @@ return (object)array(
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_PROTOCOLS => CURLPROTO_HTTPS | CURLPROTO_HTTP,
         CURLOPT_REDIR_PROTOCOLS => CURLPROTO_HTTPS | CURLPROTO_HTTP,
-        CURLOPT_MAXREDIRS => 5,
+        // Only allow 3 redirects, unlike the standard 5.
+        CURLOPT_MAXREDIRS => 3,
         // Lower timeout than the standard 18.
         CURLOPT_TIMEOUT => 8,
         CURLOPT_VERBOSE => false
