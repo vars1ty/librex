@@ -9,14 +9,10 @@ body {
     margin: 0;
 }
 
-input,
-button {
+input {
     outline: none;
 }
 
-button {
-    cursor: pointer;
-}
 
 p {
     font-size: 18px;
