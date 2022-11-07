@@ -12,9 +12,7 @@ if (isset($_REQUEST["save"])) {
     destroy_settings_cookies();
     foreach ($_POST as $key => $value) {
         if (!empty($value)) {
-            setcookie($key, $value, time() + (86400 * 90), '/');
-        } else {
-            setcookie($key, null, 0);
+            setcookie($key, $value, time() + (86400 * 90), '/'); // '/' is needed for cookies to work properly.
         }
     }
 }
@@ -121,17 +119,12 @@ require "misc/header.php";
             </div>
         </div>
         <div>
-            <label>Disable frontends
-                <input title="Disables alternative privacy frontends" type="checkbox"
-                       name="disable_frontends" <?php echo isset($_COOKIE["disable_frontends"]) ? "checked" : ""; ?>>
-            </label>
+            <?php generate_checkbox("disable_frontends", "Disable privacy frontends", "Disables privacy frontends"); ?>
         </div>
         <div>
             <h2>Privacy Enhancements</h2>
-            <label>Use Quad9*
-                <input title="Using Quad9 introduces overhead, leading to slower search results" type="checkbox"
-                       name="use_quad9" <?php echo isset($_COOKIE["use_quad9"]) ? "checked" : ""; ?>>
-            </label>
+            <?php generate_checkbox("use_quad9", "Use Quad9", "Enables Quad9 DNS-over-HTTPs for all requests.
+Please note that enabling this will increase search latency."); ?>
         </div>
         <div>
             <button type="submit" name="save" value="1">Save</button>

@@ -105,7 +105,6 @@ function get_text_results($query, $page = 0): array
                 require "engines/special/definition.php";
                 $special_result = definition_results(curl_multi_getcontent($special_ch));
                 break;
-
             case 3:
                 require "engines/special/ip.php";
                 $special_result = ip_result();

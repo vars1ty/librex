@@ -147,6 +147,17 @@ function print_next_page_button($text, $page, $query, $type): void
 function destroy_settings_cookies(): void
 {
     foreach ($_COOKIE as $k => $v) {
-        setcookie($k, null, 0);
+        setcookie($k, null, 0, '/');
     }
+}
+
+/** Generates a checkbox with $_COOKIE support.<br>
+ * The cookie is identified via <b>$name</b> and the value is automatically synced according to the cookies value.
+ */
+function generate_checkbox($name, $header, $tooltip): void
+{
+    echo
+        "<label>" . $header . "
+           <input title='" . $tooltip . "' type='checkbox' name='" . $name . "' " . (isset($_COOKIE[$name]) ? "checked" : "") . ">
+        </label>";
 }

@@ -1,7 +1,7 @@
 html {
     color: var(--main-fg);
     background-color: var(--main-bg);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Roboto Mono", sans-serif;
     font-size: 16px;
 }
 
@@ -13,9 +13,17 @@ input {
     outline: none;
 }
 
+.img-search-gray {
+    /* https://codepen.io/sosuke/pen/Pjoqqp */
+    filter: invert(45%) sepia(0%) saturate(662%) hue-rotate(150deg) brightness(91%) contrast(72%);
+}
+
+button {
+    cursor: pointer;
+}
 
 p {
-    font-size: 18px;
+    font-size: 15px;
     color: var(--result-fg);
 }
 
@@ -27,7 +35,7 @@ a,
 .text-result-wrapper a:visited h2,
 .special-result-container a,
 .sub-search-button-wrapper button {
-    color: #bd93f9;
+    color: #707070;
 }
 
 a:hover,
@@ -288,7 +296,7 @@ a:hover,
 }
 
 .X {
-    color: #bd93f9;
+    color: #ff1b1b;
 }
 
 .seeders {

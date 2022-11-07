@@ -5,7 +5,7 @@ echo "<title>" . $query . " - LinXer</title>"
 ?>
 <body>
 <form class="sub-search-container" method="get" autocomplete="off">
-    <h1 class="logomobile"><a class="no-decoration" href="./">Libre<span class="X">X</span></a></h1>
+    <h1 class="logomobile"><a class="no-decoration" href="./">Lin<span class="X">X</span>er</a></h1>
     <label>
         <input type="text" name="q"
             <?php
@@ -32,13 +32,17 @@ echo "<title>" . $query . " - LinXer</title>"
     echo "<button class=\"hide\" name=\"t\" value=\"$type\"/></button>";
     ?>
     <div class="sub-search-button-wrapper">
-        <button name="t" value="0"><img src="static/images/text_result.png" alt="" width="20" height="20"/>General
+        <button name="t" value="0"><img src="static/images/search_icon.svg" class="img-search-gray" alt="" width="20"
+                                        height="20"/>General
         </button>
-        <button name="t" value="1"><img src="static/images/image_result.png" alt="" width="20" height="20"/>Images
+        <button name="t" value="1"><img src="static/images/search_img_icon.svg" class="img-search-gray" alt=""
+                                        width="20" height="20"/>Images
         </button>
-        <button name="t" value="2"><img src="static/images/video_result.png" alt="" width="20" height="20"/>Videos
+        <button name="t" value="2"><img src="static/images/search_vid_icon.svg" class="img-search-gray" alt=""
+                                        width="20" height="20"/>Videos
         </button>
-        <button name="t" value="3"><img src="static/images/torrent_result.png" alt="" width="20" height="20"/>Torrents
+        <button name="t" value="3"><img src="static/images/search_torrrents_icon.svg" class="img-search-gray" alt=""
+                                        width="20" height="20"/>Torrents
         </button>
     </div>
     <hr>
@@ -80,7 +84,7 @@ switch ($type) {
 
     case 3:
         if ($config->disable_bittorent_search)
-            echo "<p class=\"text-result-container\">BitTorrent searches have been disabled.</p>";
+            echo "<p class=\"text-result-container\">Torrent searches have been disabled.</p>";
         else {
             require "engines/bittorrent/merge.php";
             $results = get_merged_torrent_results($query_encoded);

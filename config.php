@@ -13,10 +13,10 @@ return (object)array(
     "bittorent_trackers" => "&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
 
     /*
-     * Below you'll see redirects to open-source re-implementations of common platforms.
+     * Below you'll see redirects to open-source re-implementations of common platform frontends.
      * They have all been hand-picked for 2 things:
      * 1. Low latency
-     * 2. Which country it's hosted in
+     * 2. Which country its hosted in
      * If the country can't be deemed as secure with **your** data and the project is hosted on an unknown/insecure provider, it won't be added.
      * This eliminates several countries, especially the United States **and** most European countries that are known for having obscure/questionable
      * data-privacy laws and are rapidly becoming worse, such as Sweden.
