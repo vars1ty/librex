@@ -11,14 +11,26 @@ return (object)array(
     "bittorent_trackers" => "&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
 
     /*
-        Preset privacy friendly frontends for users, these can be overwritten by users in settings
-        e.g.: "invidious" => "https://yewtu.be",
-    */
-    "invidious" => "", // youtube
-    "bibliogram" => "", // instagram
-    "nitter" => "", // twitter
-    "libreddit" => "", // reddit
-    "proxitok" => "", // tiktok
+     * Below you'll see redirects to open-source re-implementations of common platforms.
+     * They have all been hand-picked for 2 things:
+     * 1. Low latency
+     * 2. Which country it's hosted in
+     * If the country can't be deemed as secure with **your** data, then it won't be added.
+     * This eliminates several countries, especially the United States **and** most European countries that are known for having obscure/questionable
+     * data-privacy laws and are rapidly becoming worse, such as Sweden.
+     */
+
+    // YouTube
+    "invidious" => "",
+    // Instagram
+    // Bibliogram has been discontinued and will be either replaced or removed in the future.
+    "bibliogram" => "",
+    // Twitter
+    "nitter" => "https://nitter.it/", // <= Hosted in Finland with low latency
+    // Reddit
+    "libreddit" => "https://libreddit.garudalinux.org/", // <= Hosted in Finland with low latency
+    // TikTok
+    "proxitok" => "https://proxitok.pabloferreiro.es/", // <= Hosted in German with low latency, official instance
 
     /*
         To send requests trough a proxy uncomment CURLOPT_PROXY and CURLOPT_PROXYTYPE:

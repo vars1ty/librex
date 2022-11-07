@@ -87,12 +87,14 @@ require "misc/header.php";
 
             <div>
                 <a for="bibliogram" href="https://git.sr.ht/~cadence/bibliogram-docs/tree/master/docs/Instances.md"
-                   target="_blank">Bibliogram</a>
+                   target="_blank"><del>Bibliogram</del></a>
                 <label>
                     <input type="text" name="bibliogram" placeholder="Replace Instagram" value=
                     <?php echo isset($_COOKIE["bibliogram"]) ? htmlspecialchars($_COOKIE["bibliogram"]) : "\"$config->bibliogram\""; ?>
                     >
                 </label>
+                <br>
+                <small>Bibliogram has been discontinued and will be either replaced or removed in the future.</small>
             </div>
 
             <div>
