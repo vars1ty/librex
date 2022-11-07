@@ -9,7 +9,6 @@
     <input type="hidden" name="t" value="0"/>
     <input type="submit" class="hide"/>
     <div class="search-button-wrapper">
-        <button class="btn">default button</button>
         <button name="t" value="0" type="submit">Search with LibreX</button>
         <button name="t" value="3" type="submit">Search torrents with LibreX</button>
     </div>
