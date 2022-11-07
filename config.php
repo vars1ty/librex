@@ -15,13 +15,14 @@ return (object)array(
      * They have all been hand-picked for 2 things:
      * 1. Low latency
      * 2. Which country it's hosted in
-     * If the country can't be deemed as secure with **your** data, then it won't be added.
+     * If the country can't be deemed as secure with **your** data and the project is hosted on an unknown/insecure provider, it won't be added.
      * This eliminates several countries, especially the United States **and** most European countries that are known for having obscure/questionable
      * data-privacy laws and are rapidly becoming worse, such as Sweden.
+     * There's exceptions though, like with CloudTube which is hosted by Vultr in Australia.
      */
 
     // YouTube
-    "invidious" => "",
+    "invidious" => "https://tube.cadence.moe", // <= Hosted in the United States through Vultr with relatively low latency
     // Instagram
     // Bibliogram has been discontinued and will be either replaced or removed in the future.
     "bibliogram" => "",
