@@ -1,6 +1,7 @@
 ./config.php
 ./opensearch.xml
 .idea/
+.fleet/
 *.zip
 *.gz
 *.7z
