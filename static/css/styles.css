@@ -23,6 +23,7 @@ button {
 }
 
 p {
+    cursor: pointer;
     font-size: 15px;
     color: var(--result-fg);
 }

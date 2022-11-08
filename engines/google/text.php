@@ -188,10 +188,13 @@ function print_text_results($results): void
         $url = $result["url"];
         $base_url = $result["base_url"];
         $description = $result["description"];
-
         echo "<div class=\"text-result-wrapper\">";
         echo "<a href=\"$url\">";
-        echo "$base_url";
+        $small_url = substr($url, 0, 58);
+        // If the URL contains 58 or more characters, put "..." at the end.
+        // For example: https://something-here-abc-abc-abc-abc-abc.com/hello-artic...
+        if (strlen($url) >= 58) $small_url .= "...";
+        echo $small_url;
         echo "<h2>$title</h2>";
         echo "</a>";
         echo "<span>$description</span>";

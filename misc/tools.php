@@ -38,10 +38,10 @@ function check_for_privacy_frontend($url)
 
     $frontends = array(
         "youtube.com" => "invidious",
-        "instagram.com" => "bibliogram",
         "twitter.com" => "nitter",
         "reddit.com" => "libreddit",
-        "tiktok.com" => "proxitok"
+        "tiktok.com" => "proxitok",
+        "translate.google.com" => "libretranslate"
     );
 
     foreach ($frontends as $original => $frontend) {
@@ -56,7 +56,6 @@ function check_for_privacy_frontend($url)
 
 function check_ddg_bang($query): void
 {
-
     $bangs_json = file_get_contents("static/misc/ddg_bang.json");
     $bangs = json_decode($bangs_json, true);
 
@@ -166,4 +165,15 @@ function new_curl($url): CurlHandle
     }
 
     return $tmp;
+}
+
+/** Generates an input field with $_COOKIE support.<br>
+ * The cookie is identified via <b>$name</b> and the input value is automatically synced according to the cookies value.
+ */
+function generate_input_field($name, $side_header, $side_header_url, $placeholder): void
+{
+    echo "<a " . (!empty($side_header_url) ? "href='$side_header_url' target='_blank'" : "") . ">$side_header</a>";
+    echo "<label>";
+    echo "<input type='text' name='$name' placeholder='$placeholder' value='" . (isset($_COOKIE[$name]) ? htmlspecialchars($_COOKIE[$name]) : "") . "'>";
+    echo "</label>";
 }

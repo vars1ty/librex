@@ -29,6 +29,10 @@ echo "<title>" . $query . " - LinXer</title>"
     }
 
     $type = isset($_REQUEST["t"]) ? (int)$_REQUEST["t"] : 0;
+    // Set the value to 0 if it's below 1 or higher than 3.
+    // Otherwise, the page is renderer improperly since the value is invalid.
+    if ($type < 1 || $type > 3) $type = 0;
+
     echo "<button class=\"hide\" name=\"t\" value=\"$type\"/></button>";
     ?>
     <div class="sub-search-button-wrapper">
@@ -51,7 +55,6 @@ echo "<title>" . $query . " - LinXer</title>"
 <?php
 $config = require "config.php";
 require "misc/tools.php";
-
 
 $page = isset($_REQUEST["p"]) ? (int)$_REQUEST["p"] : 0;
 

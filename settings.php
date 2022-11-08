@@ -59,11 +59,9 @@ require "misc/header.php";
             </label>
         </div>
         <div>
-            <label>Disable special queries (e.g.: currency conversion)</label>
-            <label>
-                <input type="checkbox"
-                       name="disable_special" <?php echo isset($_COOKIE["disable_special"]) ? "checked" : ""; ?> >
-            </label>
+            <?php
+            generate_checkbox("disable_special", "Disable special queries (e.g.: currency conversion)", "Disables special queries, such as your IP, Tor status, etc");
+            ?>
         </div>
         <h2>Privacy friendly frontends</h2>
         <p>For an example if you want to view YouTube without getting spied on, click on "Invidious", find the instance
@@ -77,45 +75,25 @@ require "misc/header.php";
                     >
                 </label>
             </div>
-
             <div>
-                <a for="bibliogram" href="https://git.sr.ht/~cadence/bibliogram-docs/tree/master/docs/Instances.md"
-                   target="_blank">
-                    <del>Bibliogram</del>
-                </a>
-                <label>
-                    <input type="text" name="bibliogram" placeholder="Replace Instagram" value=
-                    <?php echo isset($_COOKIE["bibliogram"]) ? htmlspecialchars($_COOKIE["bibliogram"]) : "\"$config->bibliogram\""; ?>
-                    >
-                </label>
-                <br>
-                <small>Bibliogram has been discontinued and will be either replaced or removed in the future.</small>
-            </div>
-
-            <div>
-                <a for="nitter" href="https://github.com/zedeus/nitter/wiki/Instances" target="_blank">Nitter</a>
-                <label>
-                    <input type="text" name="nitter" placeholder="Replace Twitter" value=
-                    <?php echo isset($_COOKIE["nitter"]) ? htmlspecialchars($_COOKIE["nitter"]) : "\"$config->nitter\""; ?>
-                    >
-                </label>
-            </div>
-
-            <div>
-                <a for="libreddit" href="https://github.com/spikecodes/libreddit" target="_blank">Libreddit</a>
-                <label>
-                    <input type="text" name="libreddit" placeholder="Replace Reddit" value=
-                    <?php echo isset($_COOKIE["libreddit"]) ? htmlspecialchars($_COOKIE["libreddit"]) : "\"$config->libreddit\""; ?>
-                    >
-                </label>
+                <?php
+                generate_input_field("nitter", "Nitter", "https://github.com/zedeus/nitter/wiki/Instances", "Replace Twitter");
+                ?>
             </div>
             <div>
-                <a for="proxitok" href="https://github.com/pablouser1/ProxiTok/wiki/Public-instances" target="_blank">ProxiTok</a>
-                <label>
-                    <input type="text" name="proxitok" placeholder="Replace TikTok" value=
-                    <?php echo isset($_COOKIE["proxitok"]) ? htmlspecialchars($_COOKIE["proxitok"]) : "\"$config->proxitok\""; ?>
-                    >
-                </label>
+                <?php
+                generate_input_field("libreddit", "Libreddit", "https://github.com/spikecodes/libreddit", "Replace Reddit");
+                ?>
+            </div>
+            <div>
+                <?php
+                generate_input_field("proxitok", "ProxiTok", "https://github.com/pablouser1/ProxiTok/wiki/Public-instances", "Replace TikTok");
+                ?>
+            </div>
+            <div>
+                <?php
+                generate_input_field("libretranslate", "LibreTranslate", "", "Replace Translate");
+                ?>
             </div>
         </div>
         <div>

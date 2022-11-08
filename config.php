@@ -26,15 +26,14 @@ return (object)array(
 
     // YouTube
     "invidious" => "https://tube.cadence.moe", // <= Hosted in the United States through Vultr with relatively low latency
-    // Instagram
-    // Bibliogram has been discontinued and will be either replaced or removed in the future.
-    "bibliogram" => "",
     // Twitter
     "nitter" => "https://nitter.it", // <= Hosted in Finland with low latency
     // Reddit
     "libreddit" => "https://libreddit.garudalinux.org", // <= Hosted in Finland with low latency
     // TikTok
     "proxitok" => "https://proxitok.pabloferreiro.es", // <= Hosted in German with low latency, official instance
+    // Translate
+    "libretranslate" => "https://libretranslate.com", // <= Location unknown (CF), official instance, low latency
 
     /*
         To send requests trough a proxy uncomment CURLOPT_PROXY and CURLOPT_PROXYTYPE:
