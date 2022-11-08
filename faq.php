@@ -31,11 +31,13 @@ function print_qa($question, $answer): void
     print_qa("Are cookies being used?", "Yes, cookies are being used. This is done to save your theme, custom frontends, and so forth.
     <br>You may manage/inspect all cookies by opening the Developer Tools -> Storage -> Cookies -> LinXer
     <br><br><b>Note</b>: Although cookies are being used, disabling cookies through your browser will still let the website function as normal 🤝");
+    print_qa("Is JavaScript being used?", "No and it never will be.");
     ?>
     <h3>Misc</h3>
     <hr>
     <?php
-    print_qa("Why fork LibreX?", "Simple: so that LinXer can implement its own features and tweaks, while also benefiting from LibreX' features and changes.");
+    print_qa("Why fork LibreX?", "That's like asking why some people made a fork of Firefox called LibreWolf.
+    <br><b>tl;dr</b>: Privacy enhancements, some code improvements, refactoring and new features.");
     print_qa("Does LinXer support bangs?", "Yes because LibreX implemented this feature. It's the same syntax as on DuckDuckGo.");
     print_qa("Why are images loading so slow?", "Because they are also loaded behind a different IP and aren't done in complete parallel currently.");
     print_qa("How can I set LinXer as my search engine?", "
