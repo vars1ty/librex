@@ -1,44 +1,12 @@
 <?php
-function check_for_special_search($query): int
-{
-    if (isset($_COOKIE["disable_special"]) || isset($_REQUEST["disable_special"]))
-        return 0;
-
-    $query_lower = strtolower($query);
-    $split_query = explode(" ", $query);
-
-    if (strpos($query_lower, "to") && count($split_query) >= 4) // currency
-    {
-        $amount_to_convert = floatval($split_query[0]);
-        if ($amount_to_convert != 0)
-            return 1;
-    } else if (strpos($query_lower, "mean") && count($split_query) >= 2) // definition
-    {
-        return 2;
-    } else if (str_contains($query_lower, "my")) {
-        if (strpos($query_lower, "ip")) {
-            return 3;
-        } else if (strpos($query_lower, "user agent") || strpos($query_lower, "ua")) {
-            return 4;
-        }
-    } else if (str_contains($query_lower, "weather")) {
-        return 5;
-    } else if (str_contains($query_lower, "tor")) {
-        return 6;
-    } else if (3 > count(explode(" ", $query))) // wikipedia
-    {
-        return 7;
-    }
-
-    return 0;
-}
-
 function get_text_results($query, $page = 0): array
 {
     global $config;
-
     $mh = curl_multi_init();
-    $query_lower = strtolower($query);
+    if (isset($_COOKIE["use_quad9"])) {
+        curl_setopt($mh, CURLOPT_DOH_URL, $config->quad9_doh);
+    }
+
     $query_encoded = urlencode($query);
     $results = array();
 
@@ -48,102 +16,24 @@ function get_text_results($query, $page = 0): array
     curl_setopt_array($google_ch, $config->curl_settings);
     curl_multi_add_handle($mh, $google_ch);
 
-
-    $special_search = $page == 0 ? check_for_special_search($query) : 0;
-    $special_ch = null;
-    $url = null;
-    if ($special_search != 0) {
-        switch ($special_search) {
-            case 1:
-                $url = "https://cdn.moneyconvert.net/api/latest.json";
-                break;
-            case 2:
-                $split_query = explode(" ", $query);
-                $reversed_split_q = array_reverse($split_query);
-                $word_to_define = $reversed_split_q[1];
-                $url = "https://api.dictionaryapi.dev/api/v2/entries/en/$word_to_define";
-                break;
-            case 5:
-                $url = "https://wttr.in/@" . $_SERVER["REMOTE_ADDR"] . "?format=j1";
-                break;
-            case 6:
-                $url = "https://check.torproject.org/torbulkexitlist";
-                break;
-            case 7:
-                $url = "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts%7Cpageimages&exintro&explaintext&redirects=1&pithumbsize=500&titles=$query_encoded";
-                break;
-        }
-
-        $special_ch = new_curl($url);
-
-        curl_setopt_array($special_ch, $config->curl_settings);
-        curl_multi_add_handle($mh, $special_ch);
-    }
-
-
     $running = null;
     do {
         curl_multi_exec($mh, $running);
     } while ($running);
-
-
-    if ($special_search != 0) {
-        $special_result = null;
-
-        switch ($special_search) {
-            case 1:
-                require "engines/special/currency.php";
-                $special_result = currency_results($query, curl_multi_getcontent($special_ch));
-                break;
-            case 2:
-                require "engines/special/definition.php";
-                $special_result = definition_results(curl_multi_getcontent($special_ch));
-                break;
-            case 3:
-                require "engines/special/ip.php";
-                $special_result = ip_result();
-                break;
-            case 4:
-                require "engines/special/user_agent.php";
-                $special_result = user_agent_result();
-                break;
-            case 5:
-                require "engines/special/weather.php";
-                $special_result = weather_results(curl_multi_getcontent($special_ch));
-                break;
-            case 6:
-                require "engines/special/tor.php";
-                $special_result = tor_result(curl_multi_getcontent($special_ch));
-                break;
-            case 7:
-                require "engines/special/wikipedia.php";
-                $special_result = wikipedia_results($query, curl_multi_getcontent($special_ch));
-                break;
-        }
-
-        if ($special_result != null)
-            $results[] = $special_result;
-    }
 
     $xpath = get_xpath(curl_multi_getcontent($google_ch));
 
     foreach ($xpath->query("//div[@id='search']//div[contains(@class, 'g')]") as $result) {
         $url = $xpath->evaluate(".//div[@class='yuRUbf']//a/@href", $result)[0];
 
-        if ($url == null)
-            continue;
+        if (empty($url)) continue;
 
         if (!empty($results)) // filter duplicate results, ignore special result
-        {
-            if (!array_key_exists("special_response", end($results)))
-                if (end($results)["url"] == $url->textContent)
-                    continue;
-        }
+            if (end($results)["url"] == $url->textContent)
+                continue;
 
         $url = $url->textContent;
-
         $url = check_for_privacy_frontend($url);
-
         $title = $xpath->evaluate(".//h3", $result)[0];
         $description = $xpath->evaluate(".//div[contains(@class, 'VwiC3b')]", $result)[0];
 
@@ -160,40 +50,33 @@ function get_text_results($query, $page = 0): array
     return $results;
 }
 
-function print_text_results($results): void
+/** Sets the side message. */
+function set_side_message($message, $img, $source): void
 {
-    $special = $results[0];
-    if (array_key_exists("special_response", $special)) {
-        $special_response = $special["special_response"];
-        $response = $special_response["response"];
-        $source = $special_response["source"];
+    echo "<p class='special-result-container'>";
+    if (!empty($img))
+        echo htmlspecialchars("<img src='$img' alt=''/>");
 
-        echo "<p class=\"special-result-container\">";
-        if (array_key_exists("image", $special_response)) {
-            $image_url = $special_response["image"];
-            echo "<img src=\"image_proxy.php?url=$image_url\" alt=''>";
-        }
-        echo $response;
-        if ($source)
-            echo "<a href=\"$source\" target=\"_blank\">$source</a>";
-        echo "</p>";
+    echo htmlspecialchars($message);
+    if (!empty($source))
+        echo htmlspecialchars("<a href='$source' target='_blank'>$source</a>");
+}
 
-        array_shift($results);
-    }
-
-    echo "<div class=\"text-result-container\">";
-
+/** Prints the text results alongside a side message (if available). */
+function print_text_results($query, $results): void
+{
+    if (!empty($query)) determine_side_message($query);
+    echo "<div class='text-result-container'>";
     foreach ($results as $result) {
         $title = $result["title"];
         $url = $result["url"];
-        $base_url = $result["base_url"];
         $description = $result["description"];
-        echo "<div class=\"text-result-wrapper\">";
-        echo "<a href=\"$url\">";
+        echo "<div class='text-result-wrapper'>";
+        echo "<a href='$url'>";
         $small_url = substr($url, 0, 58);
-        // If the URL contains 58 or more characters, put "..." at the end.
-        // For example: https://something-here-abc-abc-abc-abc-abc.com/hello-artic...
-        if (strlen($url) >= 58) $small_url .= "...";
+        // If the URL contains 58 or more characters, put "…" at the end.
+        // For example: https://something-here-abc-abc-abc-abc-abc.com/hello-artic…
+        if (strlen($url) >= 58) $small_url .= "…";
         echo $small_url;
         echo "<h2>$title</h2>";
         echo "</a>";

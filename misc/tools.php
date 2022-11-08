@@ -17,11 +17,6 @@ function try_replace_with_frontend($url, $frontend, $original)
         else if (!empty($config->$frontend))
             $frontend = $config->$frontend;
 
-        if ($original == "instagram.com") {
-            if (!strpos($url, "/p/"))
-                $frontend .= "/u";
-        }
-
         if (empty(trim($frontend)))
             return $url;
 
@@ -33,8 +28,7 @@ function try_replace_with_frontend($url, $frontend, $original)
 
 function check_for_privacy_frontend($url)
 {
-    if (isset($_COOKIE["disable_frontends"]))
-        return $url;
+    if (isset($_COOKIE["disable_frontends"])) return $url;
 
     $frontends = array(
         "youtube.com" => "invidious",
@@ -176,4 +170,64 @@ function generate_input_field($name, $side_header, $side_header_url, $placeholde
     echo "<label>";
     echo "<input type='text' name='$name' placeholder='$placeholder' value='" . (isset($_COOKIE[$name]) ? htmlspecialchars($_COOKIE[$name]) : "") . "'>";
     echo "</label>";
+}
+
+/** Generates a search category button, like <b>Torrents</b>. */
+function generate_search_cat_button($id, $img, $text): void
+{
+    echo "<button name='t' value='$id'>";
+    echo "<img src='static/images/$img' class='img-search-gray' alt='' width='20' height='20'/>";
+    echo $text;
+    echo "</button>";
+}
+
+/** Returns the visitors IP-Address. */
+function get_ip(): string
+{
+    if (!empty($_SERVER["HTTP_CLIENT_IP"]))
+        $ip = $_SERVER["HTTP_CLIENT_IP"];
+    elseif (!empty($_SERVER["HTTP_X_FORWARDED_FOR"]))
+        $ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+    else $ip = $_SERVER["REMOTE_ADDR"];
+
+    return $ip;
+}
+
+/** Returns the visitors User Agent. */
+function get_user_agent(): string
+{
+    return $_SERVER['HTTP_USER_AGENT'];
+}
+
+/** Determines what message to be displayed on the right side of the content. */
+// TODO: Bring back Wikipedia support.
+// TODO: Move warnings over to a JSON-file and read it.
+function determine_side_message($query): void
+{
+    $lower = strtolower($query);
+
+    // Dynamic
+    if (str_contains($lower, "my ip")) set_side_message("Your IP-Address is: " . get_ip(), "", "");
+    elseif (str_contains($lower, "my user agent")) set_side_message("Your User Agent is: " . get_user_agent(), "", "");
+
+    // Security/Privacy warnings
+    elseif (str_contains($lower, "discord")) set_side_message("⚠️ Discord is known for their poor security-practices and the infamous token loggers, you have been warned!", "", "");
+    elseif (str_contains($lower, "telegram")) set_side_message("⚠️ Telegram is known for their questionable reputation, you have been warned!", "", "");
+    elseif (str_contains($lower, "google")) set_side_message("❌ Google is known for logging massive amounts of data, you have been warned!", "", "");
+    elseif (str_contains($lower, "microsoft")) set_side_message("❌ Microsoft is known for logging massive amounts of data, you have been warned!", "", "");
+    elseif (str_contains($lower, "github")) set_side_message("⚠️ GitHub is known for shutting down projects without notice, such as Tornado Cash. You have been warned!", "", "");
+    elseif (str_contains($lower, "btc")) set_side_message("⚠️ BTC (BitCoin) is not a safe cryptocurrency, you have been warned!", "", "");
+    elseif (str_contains($lower, "bitcoin")) set_side_message("⚠️ BTC (BitCoin) is not a safe cryptocurrency, you have been warned!", "", "");
+    elseif (str_contains($lower, "paypal")) set_side_message("❌ PayPal is known for freezing and locking user-accounts, you have been warned!", "", "");
+    elseif (str_contains($lower, "windows 11")) set_side_message("❌ Windows 11 requires a Microsoft account and logs massive amounts of data, you have been warned!", "", "");
+    elseif (str_contains($lower, "chrome")) set_side_message("⚠️ Google Chrome logs massive amounts of data and is trying to make adblockers less efficient, you have been warned!", "", "");
+
+    // VPN Warnings
+    elseif (str_contains($lower, "nordvpn")) set_side_message("❌ NordVPN requires excessive amounts of user-information upon registration, please avoid if possible!", "", "");
+    elseif (str_contains($lower, "expressvpn")) set_side_message("❌ ExpressVPN requires excessive amounts of user-information upon registration, please avoid if possible!", "", "");
+    elseif (str_contains($lower, "cyberghost")) set_side_message("❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!", "", "");
+    elseif (str_contains($lower, "private internet access")) set_side_message("❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!", "", "");
+    elseif (str_contains($lower, "pia")) set_side_message("❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!", "", "");
+    elseif (str_contains($lower, "zenmate")) set_side_message("❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!", "", "");
+    elseif (str_contains($lower, "protonvpn")) set_side_message("⚠️ ProtonVPN requires more user-data than necessary and is difficult to get working on Linux, you have been warned!", "", "");
 }
