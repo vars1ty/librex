@@ -97,9 +97,7 @@ function get_xpath($response): DOMXPath
 function request($url): bool|string
 {
     global $config;
-
     $ch = new_curl($url);
-
     curl_setopt_array($ch, $config->curl_settings);
     return curl_exec($ch);
 }
@@ -108,14 +106,12 @@ function human_filesize($bytes, $dec = 2): string
 {
     $size = array('B', 'kB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB');
     $factor = floor((strlen($bytes) - 1) / 3);
-
     return sprintf("%.{$dec}f ", $bytes / pow(1024, $factor)) . @$size[$factor];
 }
 
 function remove_special($string): array|string|null
 {
     $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-
     return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
 }
 
