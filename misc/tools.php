@@ -153,10 +153,9 @@ function destroy_settings_cookies(): void
  */
 function generate_checkbox($name, $header, $tooltip): void
 {
-    echo
-        "<label>" . $header . "
-           <input title='" . $tooltip . "' type='checkbox' name='" . $name . "' " . (isset($_COOKIE[$name]) ? "checked" : "") . ">
-        </label>";
+    echo "<label>$header";
+    echo "<input title='$tooltip' type='checkbox' name='$name' " . (isset($_COOKIE[$name]) ? "checked" : "") . ">";
+    echo "</label>";
 }
 
 /** Creates a new CURL instance. */
