@@ -26,10 +26,7 @@ function get_merged_torrent_results($query): array
     $chs = $results = array();
 
     foreach ($torrent_urls as $url) {
-        $ch = curl_init($url);
-        if (isset($_COOKIE["use_quad9"])) {
-            curl_setopt($ch, CURLOPT_DOH_URL, $config->quad9_doh);
-        }
+        $ch = new_curl($url);
 
         curl_setopt_array($ch, $config->curl_settings);
         $chs[] = $ch;

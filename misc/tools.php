@@ -98,10 +98,7 @@ function request($url): bool|string
 {
     global $config;
 
-    $ch = curl_init($url);
-    if (isset($_COOKIE["use_quad9"])) {
-        curl_setopt($ch, CURLOPT_DOH_URL, $config->quad9_doh);
-    }
+    $ch = new_curl($url);
 
     curl_setopt_array($ch, $config->curl_settings);
     return curl_exec($ch);
@@ -160,4 +157,18 @@ function generate_checkbox($name, $header, $tooltip): void
         "<label>" . $header . "
            <input title='" . $tooltip . "' type='checkbox' name='" . $name . "' " . (isset($_COOKIE[$name]) ? "checked" : "") . ">
         </label>";
+}
+
+/** Creates a new CURL instance. */
+function new_curl($url): CurlHandle
+{
+    global $config;
+    $tmp = curl_init($url);
+
+    // If Quad9 is enabled, set DoH to the defined config url.
+    if (isset($_COOKIE["use_quad9"])) {
+        curl_setopt($tmp, CURLOPT_DOH_URL, $config->quad9_doh);
+    }
+
+    return $tmp;
 }
