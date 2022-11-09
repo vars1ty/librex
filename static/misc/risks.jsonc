@@ -2,7 +2,8 @@
   // Social Media platforms
   "telegram": "⚠️ Telegram is known for their questionable reputation, you have been warned!",
   "discord": "⚠️ Discord is known for their poor security-practices and the infamous token loggers, you have been warned!",
-  "facebook": "❌ Facebook is operated by Meta, which collects massive amounts of user-data, please avoid if possible!",
+  "facebook": "❌ Facebook is operated by Meta, which collect massive amounts of user-data, please avoid if possible!",
+  "meta": "❌ Meta collect massive amounts of user-data and have trackers on several websites, please avoid if possible!",
 
   // Services
   "google": "⚠️ Google is known for logging massive amounts of data, you have been warned!",
@@ -19,6 +20,8 @@
   // Software/Software-related
   "windows 11": "⚠️ Windows 11 requires a Microsoft account and logs massive amounts of data, you have been warned!",
   "chrome": "⚠️ Google Chrome logs massive amounts of data and is trying to make adblockers less efficient, you have been warned!",
+  "torrent": "⚠️ Torrenting exposes your IP-Address, please use a reputable VPN!",
+  "torrentio": "⚠️ Torrenting exposes your IP-Address, please use a reputable VPN!",
 
   // VPNs
   "nordvpn": "❌ NordVPN requires excessive amounts of user-information upon registration, please avoid if possible!",

@@ -32,7 +32,7 @@ echo "<title>" . $query . " - LinXer</title>"
 
     $type = isset($_REQUEST["t"]) ? (int)$_REQUEST["t"] : 0;
     // Set the value to 0 if it's below 1 or higher than 3.
-    // Otherwise, the page is renderer improperly since the value is invalid.
+    // Otherwise, the page is rendered improperly since the value is invalid.
     if ($type < 0 || $type > 3) $type = 0;
 
     echo "<button class='hide' name='t' value='$type'></button>";
