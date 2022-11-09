@@ -199,35 +199,50 @@ function get_user_agent(): string
     return $_SERVER['HTTP_USER_AGENT'];
 }
 
+/** Removes all comments from the read content of given file, making it possible to decode through json_decode. */
+function jsonc_remove_comments($file): string
+{
+    $lines = file($file);
+    $tmp = "";
+    $comment = "  //";
+    foreach ($lines as $line) {
+        // Too short to be a comment, add since it's safe.
+        if (strlen($line) < 5) {
+            $tmp .= "$line\n";
+            continue;
+        }
+
+        $substr = substr($line, 0, 4);
+        // If the substring isn't containing "  //", then it's not the start of a new-line comment and is safe to add.
+        if ($substr !== $comment)
+            $tmp .= "$line\n";
+    }
+
+    return $tmp;
+}
+
 /** Determines what message to be displayed on the right side of the content. */
 // TODO: Bring back Wikipedia support.
-// TODO: Move warnings over to a JSON-file and read it.
 function determine_side_message($query): void
 {
     $lower = strtolower($query);
 
+    // JSON register
+    // Remove lines which only contain a comment, skipping the need of a JSONC library.
+    $decoded = json_decode(jsonc_remove_comments("static/misc/risks.jsonc"));
+
+    // Get an array of items, split by a whitespace.
+    $parts = explode(' ', $query);
+
+    // Check if the JSON contains any item from $parts.
+    foreach ($parts as $part) {
+        if (!empty($decoded->$part)) {
+            set_side_message($decoded->$part, "", "");
+            return;
+        }
+    }
+
     // Dynamic
     if (str_contains($lower, "my ip")) set_side_message("Your IP-Address is: " . get_ip(), "", "");
     elseif (str_contains($lower, "my user agent")) set_side_message("Your User Agent is: " . get_user_agent(), "", "");
-
-    // Security/Privacy warnings
-    elseif (str_contains($lower, "discord")) set_side_message("⚠️ Discord is known for their poor security-practices and the infamous token loggers, you have been warned!", "", "");
-    elseif (str_contains($lower, "telegram")) set_side_message("⚠️ Telegram is known for their questionable reputation, you have been warned!", "", "");
-    elseif (str_contains($lower, "google")) set_side_message("❌ Google is known for logging massive amounts of data, you have been warned!", "", "");
-    elseif (str_contains($lower, "microsoft")) set_side_message("❌ Microsoft is known for logging massive amounts of data, you have been warned!", "", "");
-    elseif (str_contains($lower, "github")) set_side_message("⚠️ GitHub is known for shutting down projects without notice, such as Tornado Cash. You have been warned!", "", "");
-    elseif (str_contains($lower, "btc")) set_side_message("⚠️ BTC (BitCoin) is not a safe cryptocurrency, you have been warned!", "", "");
-    elseif (str_contains($lower, "bitcoin")) set_side_message("⚠️ BTC (BitCoin) is not a safe cryptocurrency, you have been warned!", "", "");
-    elseif (str_contains($lower, "paypal")) set_side_message("❌ PayPal is known for freezing and locking user-accounts, you have been warned!", "", "");
-    elseif (str_contains($lower, "windows 11")) set_side_message("❌ Windows 11 requires a Microsoft account and logs massive amounts of data, you have been warned!", "", "");
-    elseif (str_contains($lower, "chrome")) set_side_message("⚠️ Google Chrome logs massive amounts of data and is trying to make adblockers less efficient, you have been warned!", "", "");
-
-    // VPN Warnings
-    elseif (str_contains($lower, "nordvpn")) set_side_message("❌ NordVPN requires excessive amounts of user-information upon registration, please avoid if possible!", "", "");
-    elseif (str_contains($lower, "expressvpn")) set_side_message("❌ ExpressVPN requires excessive amounts of user-information upon registration, please avoid if possible!", "", "");
-    elseif (str_contains($lower, "cyberghost")) set_side_message("❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!", "", "");
-    elseif (str_contains($lower, "private internet access")) set_side_message("❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!", "", "");
-    elseif (str_contains($lower, "pia")) set_side_message("❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!", "", "");
-    elseif (str_contains($lower, "zenmate")) set_side_message("❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!", "", "");
-    elseif (str_contains($lower, "protonvpn")) set_side_message("⚠️ ProtonVPN requires more user-data than necessary and is difficult to get working on Linux, you have been warned!", "", "");
 }
