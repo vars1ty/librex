@@ -65,7 +65,7 @@ function set_side_message($message, $img, $source, $border_color): void
 /** Prints the text results alongside a side message (if available). */
 function print_text_results($query, $results): void
 {
-    if (!empty($query) && isset($_COOKIE["enable_side_info"])) determine_side_message($query);
+    if (!empty($query) && !isset($_COOKIE["disable_side_info"])) determine_side_message($query);
     echo "<div class='text-result-container'>";
     foreach ($results as $result) {
         $title = $result["title"];
