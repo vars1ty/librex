@@ -43,7 +43,7 @@ function get_text_results($query, $page = 0): array
             "base_url" => htmlspecialchars(get_base_url($url)),
             "description" => $description == null ?
                 "No description was provided for this site." :
-                htmlspecialchars($description->textContent)
+                str_replace("...", '…', htmlspecialchars($description->textContent))
         );
     }
 
@@ -51,9 +51,9 @@ function get_text_results($query, $page = 0): array
 }
 
 /** Sets the side message. */
-function set_side_message($message, $img, $source): void
+function set_side_message($message, $img, $source, $border_color): void
 {
-    echo "<p class='special-result-container'>";
+    echo "<p class='special-result-container'" . (!empty($border_color) ? " style='border-color: $border_color'" : "") . ">";
     if (!empty($img))
         echo htmlspecialchars("<img src='$img' alt=''/>");
 
@@ -65,7 +65,7 @@ function set_side_message($message, $img, $source): void
 /** Prints the text results alongside a side message (if available). */
 function print_text_results($query, $results): void
 {
-    if (!empty($query)) determine_side_message($query);
+    if (!empty($query) && isset($_COOKIE["enable_side_info"])) determine_side_message($query);
     echo "<div class='text-result-container'>";
     foreach ($results as $result) {
         $title = $result["title"];

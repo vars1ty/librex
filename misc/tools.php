@@ -35,7 +35,8 @@ function check_for_privacy_frontend($url)
         "twitter.com" => "nitter",
         "reddit.com" => "libreddit",
         "tiktok.com" => "proxitok",
-        "translate.google.com" => "libretranslate"
+        "translate.google.com" => "libretranslate",
+        "wikipedia.org" => "wikiless"
     );
 
     foreach ($frontends as $original => $frontend) {
@@ -143,8 +144,8 @@ function destroy_settings_cookies(): void
 function generate_checkbox($name, $header, $tooltip): void
 {
     echo "<label>$header";
-    echo "<input title='$tooltip' type='checkbox' name='$name' " . (isset($_COOKIE[$name]) ? "checked" : "") . ">";
-    echo "</label>";
+    echo "<input title='$tooltip' type='checkbox' name='$name' " . (isset($_COOKIE[$name]) ? "checked" : "") . "/>";
+    echo "</label><br>";
 }
 
 /** Creates a new CURL instance. */
@@ -166,9 +167,10 @@ function new_curl($url): CurlHandle
  */
 function generate_input_field($name, $side_header, $side_header_url, $placeholder): void
 {
+    global $config;
     echo "<a " . (!empty($side_header_url) ? "href='$side_header_url' target='_blank'" : "") . ">$side_header</a>";
     echo "<label>";
-    echo "<input type='text' name='$name' placeholder='$placeholder' value='" . (isset($_COOKIE[$name]) ? htmlspecialchars($_COOKIE[$name]) : "") . "'>";
+    echo "<input type='text' name='$name' placeholder='$placeholder' value='" . (isset($_COOKIE[$name]) ? htmlspecialchars($_COOKIE[$name]) : $config->$name) . "'>";
     echo "</label>";
 }
 
@@ -232,17 +234,17 @@ function determine_side_message($query): void
     $decoded = json_decode(jsonc_remove_comments("static/misc/risks.jsonc"));
 
     // Get an array of items, split by a whitespace.
-    $parts = explode(' ', $query);
+    $parts = explode(' ', $lower);
 
     // Check if the JSON contains any item from $parts.
     foreach ($parts as $part) {
         if (!empty($decoded->$part)) {
-            set_side_message($decoded->$part, "", "");
+            set_side_message($decoded->$part, "", "", "orangered");
             return;
         }
     }
 
     // Dynamic
-    if (str_contains($lower, "my ip")) set_side_message("Your IP-Address is: " . get_ip(), "", "");
-    elseif (str_contains($lower, "my user agent")) set_side_message("Your User Agent is: " . get_user_agent(), "", "");
+    if (str_contains($lower, "my ip")) set_side_message("Your IP-Address is: " . get_ip(), "", "", "");
+    elseif (str_contains($lower, "my user agent")) set_side_message("Your User Agent is: " . get_user_agent(), "", "", "");
 }

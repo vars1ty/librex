@@ -6,7 +6,7 @@ function wikipedia_results($query, $response)
     $first_page = array_values($json_response["query"]["pages"])[0];
 
     if (!array_key_exists("missing", $first_page)) {
-        $description = substr($first_page["extract"], 0, 250) . "...";
+        $description = substr($first_page["extract"], 0, 250) . "…";
 
         $source = check_for_privacy_frontend("https://wikipedia.org/wiki/$query");
         $response = array(

@@ -10,6 +10,8 @@ return (object)array(
     // Google results will be in this language
     "google_language" => "en",
 
+    // Checkboxes don't currently support this config, hence they are left out.
+
     "disable_bittorent_search" => false,
     "bittorent_trackers" => "&tr=http%3A%2F%2Fnyaa.tracker.wf%3A7777%2Fannounce&tr=udp%3A%2F%2Fopen.stealth.si%3A80%2Fannounce&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337%2Fannounce&tr=udp%3A%2F%2Fexodus.desync.com%3A6969%2Fannounce&tr=udp%3A%2F%2Ftracker.torrent.eu.org%3A451%2Fannounce",
 
@@ -34,6 +36,9 @@ return (object)array(
     "proxitok" => "https://proxitok.pabloferreiro.es", // <= Hosted in German with low latency, official instance
     // Translate
     "libretranslate" => "https://libretranslate.com", // <= Location unknown (CF), official instance, low latency
+    // Wikipedia
+    // Wikiless hardly does anything but bypass censorship in some countries, and remove some small amounts of non-critical JavaScript.
+    "wikiless" => "https://wikiless.org", // <= Hosted in Finland through Hetzner with low latency, official instance
 
     /*
         To send requests trough a proxy uncomment CURLOPT_PROXY and CURLOPT_PROXYTYPE:

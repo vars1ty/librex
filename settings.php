@@ -58,11 +58,6 @@ require "misc/header.php";
                 </select>
             </label>
         </div>
-        <div>
-            <?php
-            generate_checkbox("disable_special", "Disable special queries (e.g.: currency conversion)", "Disables special queries, such as your IP, Tor status, etc");
-            ?>
-        </div>
         <h2>Privacy friendly frontends</h2>
         <p>For an example if you want to view YouTube without getting spied on, click on "Invidious", find the instance
             that is most suitable for you then paste it in (correct format: https://example.com)</p>
@@ -95,14 +90,22 @@ require "misc/header.php";
                 generate_input_field("libretranslate", "LibreTranslate", "", "Replace Translate");
                 ?>
             </div>
+            <div>
+                <?php
+                generate_input_field("wikiless", "Wikiless", "", "Replace Wikipedia");
+                ?>
+            </div>
         </div>
         <div>
             <?php generate_checkbox("disable_frontends", "Disable privacy frontends", "Disables privacy frontends"); ?>
         </div>
         <div>
             <h2>Privacy Enhancements</h2>
-            <?php generate_checkbox("use_quad9", "Use Quad9", "Enables Quad9 DNS-over-HTTPs for all requests.
-Please note that enabling this will increase search latency."); ?>
+            <?php
+            generate_checkbox("enable_side_info", "Enable side information", "Enable side information, like results when you write \"what is my ip\", warnings when you search up insecure sites and so on.");
+            generate_checkbox("use_quad9", "Use Quad9", "Enables Quad9 DNS-over-HTTPs for all requests.
+Please note that enabling this will increase search latency.");
+            ?>
         </div>
         <div>
             <button type="submit" name="save" value="1">Save</button>
