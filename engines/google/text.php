@@ -4,7 +4,7 @@ function get_text_results($query, $page = 0): array
     global $config;
     $mh = curl_multi_init();
     if (isset($_COOKIE["use_quad9"])) {
-        curl_setopt($mh, CURLOPT_DOH_URL, $config->quad9_doh);
+        curl_multi_setopt($mh, CURLOPT_DOH_URL, $config->quad9_doh);
     }
 
     $query_encoded = urlencode($query);

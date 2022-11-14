@@ -63,12 +63,9 @@ require "misc/header.php";
             that is most suitable for you then paste it in (correct format: https://example.com)</p>
         <div class="instances-container">
             <div>
-                <a for="invidious" href="https://docs.invidious.io/instances/" target="_blank">Invidious</a>
-                <label>
-                    <input type="text" name="invidious" placeholder="Replace YouTube" value=
-                    <?php echo isset($_COOKIE["invidious"]) ? htmlspecialchars($_COOKIE["invidious"]) : "\"$config->invidious\""; ?>
-                    >
-                </label>
+                <?php
+                generate_input_field("invidious", "Invidious", "https://docs.invidious.io/instances/", "Replace YouTube");
+                ?>
             </div>
             <div>
                 <?php
@@ -102,7 +99,7 @@ require "misc/header.php";
         <div>
             <h2>Privacy Enhancements</h2>
             <?php
-            generate_checkbox("disable_side_info", "Disable side information", "Disable side information, like results when you write \"what is my ip\", warnings when you search up insecure sites and so on.");
+            generate_checkbox("disable_side_info", "Disable side information", "Disables side information like results when you write \"what is my ip\", warnings when you search up insecure sites and so on.");
             generate_checkbox("use_quad9", "Use Quad9", "Enables Quad9 DNS-over-HTTPs for all requests.
 Please note that enabling this will increase search latency.");
             ?>

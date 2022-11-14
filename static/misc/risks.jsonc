@@ -15,6 +15,8 @@
   "outlook": "⚠️ Outlook much like GMail, scan your E-Mails and operate inside the United States. You have been warned!",
   "gmail": "⚠️ Google Mail scan your E-Mails and save excessive amounts of user-data, you have been warned!",
   "drive": "⚠️ Google Drive scan your files and suspends you for loads of obscure reasons, you have been warned!",
+  "xbox": "⚠️ Xbox is owned by Microsoft and collect excessive amounts of user-data, you have been warned!",
+  "canva": "⚠️ Canva suffered from a breach in 2020, surrounding 4 million accounts having their passwords decrypted. You have been warned!",
   "flash player": "❌ Adobe Flash Player is a nest for security exploits and bugs, please avoid it at all costs!",
 
   // Software/Software-related
@@ -22,6 +24,9 @@
   "chrome": "⚠️ Google Chrome logs massive amounts of data and is trying to make adblockers less efficient, you have been warned!",
   "torrent": "⚠️ Torrenting exposes your IP-Address, please use a reputable VPN!",
   "torrentio": "⚠️ Torrenting exposes your IP-Address, please use a reputable VPN!",
+  "opera": "⚠️ Opera (the browser) was acquired by a Chinese investment group in 2016, you have been warned!",
+  "virtualbox": "⚠️ VirtualBox has been known for not patching various security exploits, you have been warned!",
+  "ubuntu": "⚠️ Ubuntu has recently started putting ads in their Terminal, and have gotten some bad reputation thanks to snapd, Canonical, etc. You have been warned!",
 
   // VPNs
   "nordvpn": "❌ NordVPN requires excessive amounts of user-information upon registration, please avoid if possible!",
@@ -30,9 +35,13 @@
   "private internet access": "❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!",
   "pia": "❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!",
   "zenmate": "❌ This VPN is owned by Kape which has a history related to malware, please avoid if possible!",
-  "hma vpn": "❌ HMA VPN has been caught keeping user-logs in the past, please avoid if possible!",
-  "hide my ass": "❌ HMA VPN has been caught keeping user-logs in the past, please avoid if possible!",
+  "hma": "❌ HMA VPN has been caught keeping user-logs in the past, please avoid if possible!",
   "hidemyass": "❌ HMA VPN has been caught keeping user-logs in the past, please avoid if possible!",
+  "hide my ass": "❌ HMA VPN has been caught keeping user-logs in the past, please avoid if possible!",
   "hola vpn": "❌ Hola VPN sells user-activity, saves browsing history and keep logs, please avoid if possible!",
+  "hotspot": "❌ Hotspot Shield has been caught logging and selling users information, please avoid if possible!",
+  "surfshark": "❌ Surfshark VPN is owned by NordVPN who are known for collecting user-data, please avoid if possible!",
+  "windscribe": "❌ Windscribe VPN suffered a security breach in August of 2021, please avoid if possible!",
+  "mysterium": "❌ Mysterium VPN collects more user-data than necessary and has a bad privacy policy, please avoid if possible!",
   "protonvpn": "⚠️ ProtonVPN requires more user-data than necessary and is difficult to get working on Linux, you have been warned!"
 }

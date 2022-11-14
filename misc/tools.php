@@ -155,9 +155,8 @@ function new_curl($url): CurlHandle
     $tmp = curl_init($url);
 
     // If Quad9 is enabled, set DoH to the defined config url.
-    if (isset($_COOKIE["use_quad9"])) {
+    if (isset($_COOKIE["use_quad9"]))
         curl_setopt($tmp, CURLOPT_DOH_URL, $config->quad9_doh);
-    }
 
     return $tmp;
 }
@@ -233,14 +232,16 @@ function determine_side_message($query): void
     // Remove lines which only contain a comment, skipping the need of a JSONC library.
     $decoded = json_decode(jsonc_remove_comments("static/misc/risks.jsonc"));
 
-    // Get an array of items, split by a whitespace.
-    $parts = explode(' ', $lower);
+    // Cache all words into $matches.
+    preg_match_all("/\w+/", $lower, $matches);
 
-    // Check if the JSON contains any item from $parts.
-    foreach ($parts as $part) {
-        if (!empty($decoded->$part)) {
-            set_side_message($decoded->$part, "", "", "orangered");
-            return;
+    // Check if the JSON contains any item from $matches.
+    if (!empty($matches[0])) {
+        foreach ($matches[0] as $match) {
+            if (!empty($decoded->$match)) {
+                set_side_message($decoded->$match, null, null, "orangered");
+                return;
+            }
         }
     }
 
