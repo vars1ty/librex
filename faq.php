@@ -11,8 +11,8 @@ function print_qa($question, $answer): void
 
 ?>
 
-<title>LinXer - F.A.Q</title>
-<body>
+    <title>LinXer - F.A.Q</title>
+    <body>
 <div class="misc-container">
     <h1>F.A.Q</h1>
     <h3>Privacy</h3>
@@ -20,12 +20,21 @@ function print_qa($question, $answer): void
     <?php
     print_qa("Is my IP saved?", "Your IP-Address is logged for a few hours due to automatic traffic monitoring software present on the hosts side.
     <br>The IP is not tied to anything like your search queries, it's just a line like this: <code>1.1.1.1</code>.");
-    print_qa("Why Romania?", "Because Romania has solid legislation, has GDPR and takes privacy seriously.");
-    print_qa("Why FlokiNET as your host?", "FlokiNET was chosen because it's cheap, ignores DMCA requests, respects user-privacy and is hosted in<br>🇮🇸 Iceland.");
-    print_qa("Is CloudFlare being used?", "Yes, CloudFlare is being used temporarily to help mitigate potential load issues.");
+    print_qa("Where is it hosted?", "LinXer has no set location for more than a few days.
+    <br>It changes between:<br>
+    <li>Iceland</li>
+    <li>Norway</li>
+    <li>Switzerland</li>
+    <li>Romania</li>
+    <li>Amsterdam</li>
+    <li>Sweden</li>
+    To ensure that your data isn't always flowing through one country, but rather several.<br>
+    There's one downside to this though: The uptime may fluctuate, so you have been warned.");
+    print_qa("What's your host?", "LinXer is self-hosted on a virtual machine with tons of spare resources, located in a country with decent privacy laws.");
+    print_qa("Is CloudFlare being used?", "Yes, CloudFlare is being used to reverse-proxy traffic from the server due to it being behind an unusual port.");
     print_qa("Where are you getting your search results from?", "Google, Qwant and Brave. Then there's other sources for torrents, special query lookups, etc.
     <br>You may find more information on the projects GitHub-page.");
-    print_qa("How can you hide my IP from the search engines you are scraping?", "By using CURL, the engines <b>only</b> get the IP-Address of the website which is in Romania, then it's displayed for you.
+    print_qa("How can you hide my IP from the search engines you are scraping?", "By using CURL, the engines <b>only</b> get the IP-Address of the website which originates from one of the countries above, then it's displayed for you.
 <br>It works like this:<br>Search -> LinXer fetches several engines using CURL with its own IP -> Parse -> Format -> Done, you may now see the results");
     print_qa("Are cookies being used?", "Yes, cookies are being used. This is done to save your theme, custom frontends, and so forth.
     <br>You may manage/inspect all cookies by opening the Developer Tools -> Storage -> Cookies -> LinXer
