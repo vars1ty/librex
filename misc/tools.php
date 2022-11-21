@@ -151,14 +151,7 @@ function generate_checkbox($name, $header, $tooltip): void
 /** Creates a new CURL instance. */
 function new_curl($url): CurlHandle
 {
-    global $config;
-    $tmp = curl_init($url);
-
-    // If Quad9 is enabled, set DoH to the defined config url.
-    if (isset($_COOKIE["use_quad9"]))
-        curl_setopt($tmp, CURLOPT_DOH_URL, $config->quad9_doh);
-
-    return $tmp;
+    return curl_init($url);
 }
 
 /** Generates an input field with $_COOKIE support.<br>
