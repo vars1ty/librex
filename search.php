@@ -31,9 +31,9 @@ echo "<title>" . $query . " - LinXer</title>"
     }
 
     $type = isset($_REQUEST["t"]) ? (int)$_REQUEST["t"] : 0;
-    // Set the value to 0 if it's below 1 or higher than 3.
+    // Set the value to 0 if it's below 1 or higher than 4.
     // Otherwise, the page is rendered improperly since the value is invalid.
-    if ($type < 0 || $type > 3) $type = 0;
+    if ($type < 0 || $type > 4) $type = 0;
 
     echo "<button class='hide' name='t' value='$type'></button>";
     ?>
@@ -43,6 +43,7 @@ echo "<title>" . $query . " - LinXer</title>"
         generate_search_cat_button(1, "search_img_icon.svg", "Images");
         generate_search_cat_button(2, "search_vid_icon.svg", "Videos");
         generate_search_cat_button(3, "search_torrents_icon.svg", "Torrents");
+        generate_search_cat_button(4, "search_tor_icon.svg", "Tor");
         ?>
     </div>
     <hr>
@@ -94,7 +95,17 @@ switch ($type) {
         }
 
         break;
+    case 4:
+        if ($config->disable_hidden_service_search)
+            echo "<p class=\"text-result-container\">The host disabled this feature! :C</p>";
+        else {
+            require "engines/ahmia/hidden_service.php";
+            $results = get_hidden_service_results($query_encoded);
+            print_elapsed_time(sizeof($results), $start_time);
+            print_hidden_service_results($results);
+        }
 
+        break;
     default:
         require "engines/google/text.php";
         $results = get_text_results($query_encoded, $page);

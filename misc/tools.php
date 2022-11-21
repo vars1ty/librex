@@ -105,8 +105,8 @@ function human_filesize($bytes, $dec = 2): string
 
 function remove_special($string): array|string|null
 {
-    $string = str_replace(' ', '-', $string); // Replaces all spaces with hyphens.
-    return preg_replace('/[^A-Za-z0-9\-]/', '', $string); // Removes special chars.
+    $string = preg_replace("/[\r\n]+/", "\n", $string);
+    return trim(preg_replace("/\s+/", ' ', $string));
 }
 
 function print_elapsed_time($results, $start_time): void
