@@ -37,6 +37,8 @@ return (object)array(
     // Wikipedia
     // Wikiless hardly does anything but bypass censorship in some countries, and remove some small amounts of non-critical JavaScript.
     "wikiless" => "https://wikiless.org", // <= Hosted in Finland through Hetzner with low latency, official instance
+    "quetre" => "", // quora
+    "libremdb" => "", // imdb
 
     /*
         To send requests trough a proxy uncomment CURLOPT_PROXY and CURLOPT_PROXYTYPE:
@@ -57,7 +59,7 @@ return (object)array(
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => "",
         // This should preferably be up-to-date with the latest Chrome version to blend in with requests.
-        CURLOPT_USERAGENT => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36",
+        CURLOPT_USERAGENT => "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36",
         CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
         CURLOPT_CUSTOMREQUEST => "GET",
         CURLOPT_PROTOCOLS => CURLPROTO_HTTPS | CURLPROTO_HTTP,

@@ -8,8 +8,11 @@ function get_thepiratebay_results($response): array
     $results = array();
     $json_response = json_decode($response, true);
 
-    foreach ($json_response as $response) {
+    if (empty($json_response)) {
+        return $results;
+    }
 
+    foreach ($json_response as $response) {
         $size = human_filesize($response["size"]);
         $hash = $response["info_hash"];
         $name = $response["name"];
@@ -24,13 +27,11 @@ function get_thepiratebay_results($response): array
         $results[] = array(
             "size" => htmlspecialchars($size),
             "name" => htmlspecialchars($name),
-            "seeders" => htmlspecialchars($seeders),
-            "leechers" => htmlspecialchars($leechers),
+            "seeders" => (int)htmlspecialchars($seeders),
+            "leechers" => (int)htmlspecialchars($leechers),
             "magnet" => htmlspecialchars($magnet),
             "source" => "thepiratebay.org"
         );
     }
-
     return $results;
-
 }

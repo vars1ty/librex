@@ -259,8 +259,8 @@ a:hover,
 }
 
 .image-result-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     grid-gap: 1.5rem;
     justify-items: center;
     margin-left: 9%;
@@ -269,9 +269,17 @@ a:hover,
     margin-bottom: 50px;
 }
 
+a[title] {
+    flex-grow: 1;
+    height: 12rem;
+}
+
 .image-result-container img {
-    border: 2px solid var(--button-bg);
-    margin: 10px;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    vertical-align: bottom;
 }
 
 .footer-container {

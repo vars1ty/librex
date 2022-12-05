@@ -92,6 +92,16 @@ require "misc/header.php";
                 generate_input_field("wikiless", "Wikiless", "", "Replace Wikipedia");
                 ?>
             </div>
+            <div>
+                <?php
+                generate_input_field("quetre", "Quetre", "", "Replace Quora");
+                ?>
+            </div>
+            <div>
+                <?php
+                generate_input_field("libremdb", "LibreMDb", "", "Replace IMDb");
+                ?>
+            </div>
         </div>
         <div>
             <?php generate_checkbox("disable_frontends", "Disable privacy frontends", "Disables privacy frontends"); ?>

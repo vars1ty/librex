@@ -36,7 +36,9 @@ function check_for_privacy_frontend($url)
         "reddit.com" => "libreddit",
         "tiktok.com" => "proxitok",
         "translate.google.com" => "libretranslate",
-        "wikipedia.org" => "wikiless"
+        "wikipedia.org" => "wikiless",
+        "quora.com" => "quetre",
+        "imdb.com" => "libremdb"
     );
 
     foreach ($frontends as $original => $frontend) {

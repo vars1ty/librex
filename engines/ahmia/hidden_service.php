@@ -13,7 +13,7 @@ function get_hidden_service_results($query): array
         $description = $xpath->evaluate(".//p", $result)[0]->textContent;
 
         $results[] = array(
-            "title" => $title,
+            "title" => $title ? htmlspecialchars($title) : "No description provided",
             "url" => htmlspecialchars($url),
             "base_url" => htmlspecialchars(get_base_url($url)),
             "description" => htmlspecialchars($description)

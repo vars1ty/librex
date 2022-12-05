@@ -26,7 +26,7 @@ echo "<title>" . $query . " - LinXer</title>"
     <?php
     foreach ($_REQUEST as $key => $value) {
         if ($key != "q" && $key != "p" && $key != "t") {
-            echo "<input type='hidden' name='$key' value='$value'/>";
+            echo "<input type=\"hidden\" name=\"" . htmlspecialchars($key) . "\" value=\"" . htmlspecialchars($value) . "\"/>";
         }
     }
 
